@@ -1,0 +1,25 @@
+{
+  "_comment": "Add this to ~/.claude/settings.json (merge into existing hooks key)",
+
+  "hooks": {
+    "PermissionRequest": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Volumes/DATA/workspace/sandbox/claude-phone-hook/notify.sh",
+            "timeout": 310
+          }
+        ]
+      }
+    ]
+  },
+
+  "env": {
+    "BRRR_SECRET": "YOUR_SECRET_HERE",
+    "RELAY_PORT": "9876",
+    "POLL_TIMEOUT": "300",
+    "_comment_env": "RELAY_URL auto-detected from tailscale. Set explicitly only to override."
+  }
+}
