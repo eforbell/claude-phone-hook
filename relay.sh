@@ -76,8 +76,8 @@ APPROVE_HTML = """<!DOCTYPE html>
     <button class="allow" onclick="respond('allow')">Allow</button>
   </div>
   <div class="input-section">
-    <textarea id="msg" placeholder="Optional message to Claude..."></textarea>
-    <button class="send-btn" onclick="respond('message')">Send Message</button>
+    <textarea id="msg" placeholder="Deny with feedback (e.g. 'use trash instead of rm')"></textarea>
+    <button class="send-btn" onclick="respond('message')">Deny with Message</button>
   </div>
 </div>
 <div class="card" id="result" style="display:none">

@@ -157,14 +157,18 @@ while [[ $ELAPSED -lt $POLL_TIMEOUT ]]; do
 
     case "$DECISION" in
       allow)
+        log "Decision: allow"
         echo '{"hookSpecificOutput":{"hookEventName":"PermissionRequest","decision":{"behavior":"allow"}}}'
         ;;
       deny)
+        log "Decision: deny"
         echo '{"hookSpecificOutput":{"hookEventName":"PermissionRequest","decision":{"behavior":"deny","message":"Denied from phone"}}}'
         ;;
       *)
-        # If the response contains custom input/message, pass it as context
-        echo "{\"hookSpecificOutput\":{\"hookEventName\":\"PermissionRequest\",\"decision\":{\"behavior\":\"ask\"}}}"
+        # Freeform message — deny with the message as reason so Claude sees it
+        log "Decision: deny with message: $DECISION"
+        ESCAPED=$(echo "$DECISION" | jq -Rs '.')
+        echo "{\"hookSpecificOutput\":{\"hookEventName\":\"PermissionRequest\",\"decision\":{\"behavior\":\"deny\",\"message\":${ESCAPED}}}}"
         ;;
     esac
     exit 0
