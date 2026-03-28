@@ -17,9 +17,10 @@
   },
 
   "env": {
+    "PHONE_HOOK": "1",
     "BRRR_SECRET": "YOUR_SECRET_HERE",
     "RELAY_PORT": "9876",
     "POLL_TIMEOUT": "300",
-    "_comment_env": "RELAY_URL auto-detected from tailscale. Set explicitly only to override."
+    "_comment_env": "Set PHONE_HOOK=0 to disable. RELAY_URL auto-detected from tailscale."
   }
 }

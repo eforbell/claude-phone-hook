@@ -17,6 +17,13 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
+# ── Kill switch ───────────────────────────────────────────────────────────────
+# Set PHONE_HOOK=0 in settings.json env to disable, PHONE_HOOK=1 to enable
+if [[ "${PHONE_HOOK:-1}" == "0" ]]; then
+  echo '{"hookSpecificOutput":{"hookEventName":"PermissionRequest","decision":{"behavior":"ask"}}}'
+  exit 0
+fi
+
 # ── Config (override via env) ─────────────────────────────────────────────────
 BRRR_SECRET="${BRRR_SECRET:-}"                    # REQUIRED: your brrr.now secret
 BRRR_API="https://api.brrr.now/v1"
